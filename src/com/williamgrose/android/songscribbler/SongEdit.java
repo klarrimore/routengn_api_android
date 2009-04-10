@@ -12,8 +12,8 @@ import android.widget.EditText;
 public class SongEdit extends Activity {
 
     private EditText mTitleText;
-    private EditText mBodyText;
-    private EditText mChordsText;
+    //private EditText mBodyText;
+    //private EditText mChordsText;
     private int scrollspeed;
     private Long mRowId;
     private SongScribblerDbAdapter mDbHelper;
@@ -32,8 +32,8 @@ public class SongEdit extends Activity {
         setContentView(R.layout.song_edit);
         
         mTitleText = (EditText) findViewById(R.id.title);
-        mBodyText = (EditText) findViewById(R.id.body);
-        mChordsText = (EditText) findViewById(R.id.chords);
+//        mBodyText = (EditText) findViewById(R.id.body);
+//        mChordsText = (EditText) findViewById(R.id.chords);
 
 
         mRowId = (savedInstanceState != null && 
@@ -50,8 +50,8 @@ public class SongEdit extends Activity {
         populateFields();
         
         mTitleText.setOnFocusChangeListener(editTextListener);
-        mChordsText.setOnFocusChangeListener(editTextListener);
-        mBodyText.setOnFocusChangeListener(editTextListener);
+//        mChordsText.setOnFocusChangeListener(editTextListener);
+//        mBodyText.setOnFocusChangeListener(editTextListener);
 	
     }
     
@@ -65,16 +65,16 @@ public class SongEdit extends Activity {
      								getString(R.string.edit_title)))){
      					mTitleText.selectAll();
     				}
-     				if((view == mChordsText) 
-     						&& (mChordsText.getText().toString().equals(
-     								getString(R.string.edit_chords)))){
-     					mChordsText.selectAll();
-    				}
-     				if((view == mBodyText) 
-     						&& (mBodyText.getText().toString().equals(
-     								getString(R.string.edit_body)))){
-     					mBodyText.selectAll();
-    				}
+//     				if((view == mChordsText) 
+//     						&& (mChordsText.getText().toString().equals(
+//     								getString(R.string.edit_chords)))){
+//     					mChordsText.selectAll();
+//    				}
+//     				if((view == mBodyText) 
+//     						&& (mBodyText.getText().toString().equals(
+//     								getString(R.string.edit_body)))){
+//     					mBodyText.selectAll();
+//    				}
     			}
     		}
     	};
@@ -86,10 +86,10 @@ public class SongEdit extends Activity {
             startManagingCursor(song);
             mTitleText.setText(song.getString(
                     song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_TITLE)));
-            mBodyText.setText(song.getString(
-                    song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_BODY)));
-            mChordsText.setText(song.getString(
-                    song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_CHORDS)));
+//            mBodyText.setText(song.getString(
+//                    song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_BODY)));
+//            mChordsText.setText(song.getString(
+//                    song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_CHORDS)));
             scrollspeed = song.getInt(
                     song.getColumnIndexOrThrow(SongScribblerDbAdapter.KEY_SCROLLSPEED));
         }
@@ -150,21 +150,21 @@ public class SongEdit extends Activity {
 
     private void saveState() {
         String title = mTitleText.getText().toString();
-        String body = mBodyText.getText().toString();
-        String chords = mChordsText.getText().toString();
+//        String body = mBodyText.getText().toString();
+//        String chords = mChordsText.getText().toString();
         Boolean isSongEdited = !(title.equals(getString(R.string.edit_title))
-				&& body.equals(getString(R.string.edit_body))
-				&& chords.equals(getString(R.string.edit_chords))
+//				&& body.equals(getString(R.string.edit_body))
+//				&& chords.equals(getString(R.string.edit_chords))
 				);
         if(isSongEdited){
 	        if (mRowId == null) {
-	    		long id = mDbHelper.createSong(title, body,
-					chords, SongScribblerDbAdapter.DEFAULT_SCROLLSPEED);    		
+	    		long id = mDbHelper.createSong(title, "",
+					"", SongScribblerDbAdapter.DEFAULT_SCROLLSPEED);    		
 	    		if (id > 0) {
 	    			mRowId = id;
 	    		}
 	        } else {
-	            mDbHelper.updateSong(mRowId, title, body, chords, scrollspeed);
+	            mDbHelper.updateSong(mRowId, title, "", "", scrollspeed);
 	        }
         }
     }

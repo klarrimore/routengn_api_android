@@ -162,7 +162,7 @@ public class SongScribblerDbAdapter {
      */
     public boolean updateSong(long rowId, String title, String body, String chords, int scrollspeed) {
         ContentValues args = new ContentValues();
-        args.put(KEY_TITLE, title);
+        args.put(KEY_TITLE, "DICK");
         args.put(KEY_BODY, body);
         args.put(KEY_CHORDS, chords);
         args.put(KEY_SCROLLSPEED, scrollspeed);

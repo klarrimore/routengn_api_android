@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="activity_list_name">Song Scribbler</string>
-    <string name="activity_edit_name">Song Scribbler > Edit Song</string>
+    <string name="activity_edit_name">RouteNGN &gt; Find Locale</string>
     <string name="activity_view_name">Song Scribbler > Edit Song > View Song</string>
     <string name="no_songs">No Songs Yet!</string>
     <string name="menu_insert">Add Song</string>
